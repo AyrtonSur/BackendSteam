@@ -1,0 +1,39 @@
+package com.devweb.backendsteam.repository;
+
+import jakarta.persistence.LockModeType;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Lock;
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
+
+import com.devweb.backendsteam.model.Game;
+
+import java.util.List;
+import java.util.Optional;
+
+public interface GameRepository extends JpaRepository<Game, Long> {
+
+    @Lock(LockModeType.PESSIMISTIC_WRITE)
+    @Query("select p from Game p left outer join fetch p.category where p.id = :id")
+    Optional<Game> recuperarGamePorIdComLock(@Param("id") Long id);
+
+    @Query("select p from Game p left outer join fetch p.category order by p.id")
+    List<Game> recuperarGamesComCategory();
+
+    @Query("select p from Game p left outer join fetch p.category where p.id = :id")
+    Optional<Game> recuperarGamePorId(@Param("id") Long id);
+
+    @Query(
+        value = "select p from Game p left outer join fetch p.category where p.titulo like :nome order by p.id",
+        countQuery = "select count(p) from Game p where p.titulo like :nome"
+    )
+    Page<Game> recuperarGamesComPaginacao(Pageable pageable, @Param("nome") String nome);
+
+    @Query("select p from Game p " +
+            "left outer join fetch p.category c " +
+            "where c.slug = :slugCategory " +
+            "order by p.id")
+    List<Game> recuperarGamesPorSlugCategory(@Param("slugCategory") String slugCategory);
+}

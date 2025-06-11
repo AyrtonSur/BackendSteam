@@ -5,10 +5,10 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
-import com.devweb.backendsteam.model.Categoria;
-import com.devweb.backendsteam.model.Jogo;
-import com.devweb.backendsteam.repository.CategoriaRepository;
-import com.devweb.backendsteam.repository.JogoRepository;
+import com.devweb.backendsteam.model.Category;
+import com.devweb.backendsteam.model.Game;
+import com.devweb.backendsteam.repository.CategoryRepository;
+import com.devweb.backendsteam.repository.GameRepository;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
@@ -17,10 +17,10 @@ import java.time.LocalDate;
 public class BackendSteamApplication implements CommandLineRunner {
 
 	@Autowired
-	private JogoRepository jogoRepository;
+	private GameRepository gameRepository;
 
 	@Autowired
-	private CategoriaRepository categoriaRepository;
+	private CategoryRepository categoriaRepository;
 
 	public static void main(String[] args) {
 		SpringApplication.run(BackendSteamApplication.class, args);
@@ -28,18 +28,18 @@ public class BackendSteamApplication implements CommandLineRunner {
 
 	@Override
 	public void run(String... args) throws Exception {
-		// Adicione categorias de jogos digitais
-		Categoria acao = new Categoria("Ação", "acao");
-		Categoria rpg = new Categoria("RPG", "rpg");
-		Categoria estrategia = new Categoria("Estratégia", "estrategia");
-		Categoria aventura = new Categoria("Aventura", "aventura");
+		// Adicione categories de games digitais
+		Category acao = new Category("Ação", "acao");
+		Category rpg = new Category("RPG", "rpg");
+		Category estrategia = new Category("Estratégia", "estrategia");
+		Category aventura = new Category("Aventura", "aventura");
 		categoriaRepository.save(acao);
 		categoriaRepository.save(rpg);
 		categoriaRepository.save(estrategia);
 		categoriaRepository.save(aventura);
 
 		// Hollow Knight
-		Jogo hollowKnight = new Jogo(
+		Game hollowKnight = new Game(
 				"hollowknight.png",
 				"Hollow Knight",
 				"Team Cherry",
@@ -55,10 +55,10 @@ public class BackendSteamApplication implements CommandLineRunner {
 				"Português, Inglês",
 				aventura
 		);
-		jogoRepository.save(hollowKnight);
+		gameRepository.save(hollowKnight);
 
 		// Skyrim
-		Jogo skyrim = new Jogo(
+		Game skyrim = new Game(
 				"skyrim.png",
 				"The Elder Scrolls V: Skyrim",
 				"Bethesda Game Studios",
@@ -74,10 +74,10 @@ public class BackendSteamApplication implements CommandLineRunner {
 				"Português, Inglês",
 				rpg
 		);
-		jogoRepository.save(skyrim);
+		gameRepository.save(skyrim);
 
 		// Balatro
-		Jogo balatro = new Jogo(
+		Game balatro = new Game(
 				"balatro.png",
 				"Balatro",
 				"LocalThunk",
@@ -93,10 +93,10 @@ public class BackendSteamApplication implements CommandLineRunner {
 				"Inglês",
 				estrategia
 		);
-		jogoRepository.save(balatro);
+		gameRepository.save(balatro);
 
 		// Terraria
-		Jogo terraria = new Jogo(
+		Game terraria = new Game(
 				"terraria.png",
 				"Terraria",
 				"Re-Logic",
@@ -112,10 +112,10 @@ public class BackendSteamApplication implements CommandLineRunner {
 				"Português, Inglês",
 				acao
 		);
-		jogoRepository.save(terraria);
+		gameRepository.save(terraria);
 
 		// Marvel Rivals
-		Jogo marvelRivals = new Jogo(
+		Game marvelRivals = new Game(
 				"marvelrivals.png",
 				"Marvel Rivals",
 				"NetEase Games",
@@ -131,10 +131,10 @@ public class BackendSteamApplication implements CommandLineRunner {
 				"Português, Inglês",
 				acao
 		);
-		jogoRepository.save(marvelRivals);
+		gameRepository.save(marvelRivals);
 
 		// Stardew Valley
-		Jogo stardewValley = new Jogo(
+		Game stardewValley = new Game(
 				"stardewvalley.png",
 				"Stardew Valley",
 				"ConcernedApe",
@@ -150,10 +150,10 @@ public class BackendSteamApplication implements CommandLineRunner {
 				"Português, Inglês",
 				rpg
 		);
-		jogoRepository.save(stardewValley);
+		gameRepository.save(stardewValley);
 
 		// Civilization VI
-		Jogo civ6 = new Jogo(
+		Game civ6 = new Game(
 				"civ6.png",
 				"Sid Meier's Civilization VI",
 				"Firaxis Games",
@@ -169,10 +169,10 @@ public class BackendSteamApplication implements CommandLineRunner {
 				"Português, Inglês",
 				estrategia
 		);
-		jogoRepository.save(civ6);
+		gameRepository.save(civ6);
 
 		// Portal 2
-		Jogo portal2 = new Jogo(
+		Game portal2 = new Game(
 				"portal2.png",
 				"Portal 2",
 				"Valve",
@@ -188,10 +188,10 @@ public class BackendSteamApplication implements CommandLineRunner {
 				"Português, Inglês",
 				estrategia
 		);
-		jogoRepository.save(portal2);
+		gameRepository.save(portal2);
 
 		// The Witcher 3
-		Jogo witcher3 = new Jogo(
+		Game witcher3 = new Game(
 				"witcher3.png",
 				"The Witcher 3: Wild Hunt",
 				"CD Projekt Red",
@@ -207,10 +207,10 @@ public class BackendSteamApplication implements CommandLineRunner {
 				"Português, Inglês",
 				rpg
 		);
-		jogoRepository.save(witcher3);
+		gameRepository.save(witcher3);
 
 		// Celeste
-		Jogo celeste = new Jogo(
+		Game celeste = new Game(
 				"celeste.png",
 				"Celeste",
 				"Matt Makes Games",
@@ -220,12 +220,12 @@ public class BackendSteamApplication implements CommandLineRunner {
 				LocalDate.of(2018, 1, 25),
 				BigDecimal.valueOf(19.99),
 				4.8,
-				"Ajude Madeline a escalar a montanha Celeste em um desafiador jogo de plataforma.",
+				"Ajude Madeline a escalar a montanha Celeste em um desafiador game de plataforma.",
 				false,
 				"10+",
 				"Português, Inglês",
 				aventura
 		);
-		jogoRepository.save(celeste);
+		gameRepository.save(celeste);
 	}
 }

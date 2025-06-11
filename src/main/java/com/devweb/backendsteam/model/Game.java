@@ -8,13 +8,15 @@ import lombok.ToString;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
+import java.util.HashSet;
+import java.util.Set;
 
 @Getter
 @Setter
 @NoArgsConstructor
 @ToString
 @Entity
-public class Jogo {
+public class Game {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -22,7 +24,7 @@ public class Jogo {
     private String titulo;
     private String desenvolvedora;
     private String publicadora;
-    private String genero;
+
     private String plataforma;
     private LocalDate dataLancamento;
     private BigDecimal preco;
@@ -32,19 +34,31 @@ public class Jogo {
     private String classificacaoEtaria;
     private String idioma;
     @ManyToOne
-    private Categoria categoria;
+    private Category category;
 
-    public Jogo(
-        String image, String titulo, String desenvolvedora, String publicadora, String genero, String plataforma,
+    @ManyToMany
+    @JoinTable(name = "game_genre", joinColumns = @JoinColumn(name = "game_id"), inverseJoinColumns = @JoinColumn(name = "genre_id"))
+    private Set<Genre> genres = new HashSet<>();
+ 
+    @ManyToMany
+    @JoinTable(name = "game_platform", joinColumns = @JoinColumn(name = "game_id"), inverseJoinColumns = @JoinColumn(name = "platform_id"))
+    private Set<Platform> platforms = new HashSet<>();
+
+    @ManyToMany
+    @JoinTable(name = "game_language", joinColumns = @JoinColumn(name = "game_id"), inverseJoinColumns = @JoinColumn(name = "language_id"))
+    private Set<Language> languages = new HashSet<>();
+
+    public Game(
+        String image, String titulo, String desenvolvedora, String publicadora, Set<Genre> genres, String plataforma,
         LocalDate dataLancamento, BigDecimal preco, double avaliacao, String descricao, 
         boolean multiplayer, String classificacaoEtaria, 
-        String idioma, Categoria categoria
+        String idioma, Category category
     ) {
         this.image = image;
         this.titulo = titulo;
         this.desenvolvedora = desenvolvedora;
         this.publicadora = publicadora;
-        this.genero = genero;
+        this.genres = genres;
         this.plataforma = plataforma;
         this.dataLancamento = dataLancamento;
         this.preco = preco;
@@ -53,6 +67,6 @@ public class Jogo {
         this.multiplayer = multiplayer;
         this.classificacaoEtaria = classificacaoEtaria;
         this.idioma = idioma;
-        this.categoria = categoria;
+        this.category = category;
     }
 }

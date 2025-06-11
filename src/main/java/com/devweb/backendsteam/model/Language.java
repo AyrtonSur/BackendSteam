@@ -7,14 +7,15 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 
-import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
 
 @Getter
 @Setter
 @NoArgsConstructor
 @ToString
 @Entity
-public class Categoria {
+public class Language {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -22,10 +23,10 @@ public class Categoria {
     private String slug;
 
     @JsonIgnore
-    @OneToMany (mappedBy = "categoria")
-    private List<Jogo> jogos;
+    @ManyToMany(mappedBy = "languages")
+    private Set<Game> games = new HashSet<>();
 
-    public Categoria(String nome, String slug) {
+    public Language(String nome, String slug) {
         this.nome = nome;
         this.slug = slug;
     }
