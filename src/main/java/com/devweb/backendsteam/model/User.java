@@ -44,7 +44,11 @@ public class User {
 
     @JsonIgnore
     @OneToMany(mappedBy = "user")
-    private List<Game> games;
+    private List<OwnedGame> ownedGames;
+
+    @JsonIgnore
+    @OneToMany(mappedBy = "user")
+    private List<Wishlist> wishlist;
 
     public User(
         String name, String username, String email,

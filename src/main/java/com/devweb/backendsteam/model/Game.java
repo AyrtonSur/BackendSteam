@@ -9,7 +9,10 @@ import lombok.ToString;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Getter
 @Setter
@@ -47,6 +50,14 @@ public class Game {
     @ManyToMany
     @JoinTable(name = "game_language", joinColumns = @JoinColumn(name = "game_id"), inverseJoinColumns = @JoinColumn(name = "language_id"))
     private Set<Language> languages = new HashSet<>();
+
+    @JsonIgnore
+    @OneToMany(mappedBy = "user")
+    private List<OwnedGame> gamesOwned;
+
+    @JsonIgnore
+    @OneToMany(mappedBy = "user")
+    private List<Wishlist> wishlist;
 
     public Game(
         String image, String titulo, String desenvolvedora, String publicadora, Set<Genre> genres, String plataforma,
