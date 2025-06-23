@@ -1,9 +1,6 @@
 package com.devweb.backendsteam.repository;
 
+import com.devweb.backendsteam.model.Genre;
 import org.springframework.data.jpa.repository.JpaRepository;
 
-import com.devweb.backendsteam.model.Genre;
-
-public interface GenreRepository extends JpaRepository<Genre, Long> {
-    
-}
+public interface GenreRepository extends JpaRepository<Genre, Long> {}

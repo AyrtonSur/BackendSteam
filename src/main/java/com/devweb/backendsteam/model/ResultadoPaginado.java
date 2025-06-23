@@ -1,4 +1,5 @@
 package com.devweb.backendsteam.model;
+
 // - total de itens
 // - total de páginas
 // - pagina corrente
@@ -7,8 +8,4 @@ package com.devweb.backendsteam.model;
 import java.util.List;
 
 public record ResultadoPaginado<T>(
-        long totalDeItens,
-        int totalDePaginas,
-        int paginaCorrente,
-        List<T> itens) {
-}
+	long totalDeItens, int totalDePaginas, int paginaCorrente, List<T> itens) {}
