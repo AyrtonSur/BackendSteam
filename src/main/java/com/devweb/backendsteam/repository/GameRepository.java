@@ -23,6 +23,16 @@ List<Game> recuperarGamesComCategory();
 @Query("select p from Game p left outer join fetch p.category where p.id = :id")
 Optional<Game> recuperarGamePorId(@Param("id") Long id);
 
+@Query("""
+    select distinct g from Game g
+    left join fetch g.category
+    left join fetch g.genres
+    left join fetch g.platforms
+    left join fetch g.languages
+    where g.id = :id
+""")
+Optional<Game> recuperarGameComTudo(@Param("id") Long id);
+
 @Query(
 	value =
 		"select p from Game p left outer join fetch p.category where p.titulo like :nome order by p.id",
