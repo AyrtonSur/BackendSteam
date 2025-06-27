@@ -6,5 +6,5 @@ import java.util.List;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface OwnedGameRepository extends JpaRepository<OwnedGame, OwnedGameId> {
-List<OwnedGame> findByUserId(Long userId);
+  List<OwnedGame> findByUserId(Long userId);
 }

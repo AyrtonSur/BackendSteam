@@ -13,43 +13,43 @@ import org.springframework.transaction.annotation.Transactional;
 @Service
 public class GameService {
 
-@Autowired private GameRepository gameRepository;
+	@Autowired private GameRepository gameRepository;
 
-public List<Game> recuperarGames() {
-	return gameRepository.recuperarGamesComCategory();
-}
+	public List<Game> recuperarGames() {
+		return gameRepository.recuperarGamesComCategory();
+	}
 
-public Game cadastrarGame(Game game) {
-	return gameRepository.save(game);
-}
+	public Game cadastrarGame(Game game) {
+		return gameRepository.save(game);
+	}
 
-@Transactional
-public Game alterarGame(Game game) {
-	gameRepository
-		.recuperarGamePorIdComLock(game.getId())
-		.orElseThrow(
-			() ->
-				new GameNaoEncontradoException("Game número " + game.getId() + " não encontrado."));
-	return gameRepository.save(game);
-}
+	@Transactional
+	public Game alterarGame(Game game) {
+		gameRepository
+			.recuperarGamePorIdComLock(game.getId())
+			.orElseThrow(
+				() ->
+					new GameNaoEncontradoException("Game número " + game.getId() + " não encontrado."));
+		return gameRepository.save(game);
+	}
 
-@Transactional(rollbackFor = Exception.class)
-public void removerGame(long id) {
-	gameRepository.deleteById(id);
-}
+	@Transactional(rollbackFor = Exception.class)
+	public void removerGame(long id) {
+		gameRepository.deleteById(id);
+	}
 
-public Game recuperarGamePorId(long id) {
-	return gameRepository
-		.recuperarGamePorId(id)
-		.orElseThrow(
-			() -> new GameNaoEncontradoException("Game número " + id + " não encontrado."));
-}
+	public Game recuperarGamePorId(long id) {
+		return gameRepository
+			.recuperarGamePorId(id)
+			.orElseThrow(
+				() -> new GameNaoEncontradoException("Game número " + id + " não encontrado."));
+	}
 
-public Page<Game> recuperarGamesComPaginacao(Pageable pageable, String nome) {
-	return gameRepository.recuperarGamesComPaginacao(pageable, "%" + nome + "%");
-}
+	public Page<Game> recuperarGamesComPaginacao(Pageable pageable, String nome) {
+		return gameRepository.recuperarGamesComPaginacao(pageable, "%" + nome + "%");
+	}
 
-public List<Game> recuperarGamesPorSlugCategory(String slugCategory) {
-	return gameRepository.recuperarGamesPorSlugCategory(slugCategory);
-}
+	public List<Game> recuperarGamesPorSlugCategory(String slugCategory) {
+		return gameRepository.recuperarGamesPorSlugCategory(slugCategory);
+	}
 }

@@ -8,8 +8,8 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 @ControllerAdvice
 public class GlobalExceptionHandler {
 
-@ExceptionHandler(GameNaoEncontradoException.class)
-public ResponseEntity<String> handleGameNaoEncontrado(GameNaoEncontradoException e) {
-	return new ResponseEntity<>(e.getMessage(), HttpStatus.NOT_FOUND);
-}
+	@ExceptionHandler(GameNaoEncontradoException.class)
+	public ResponseEntity<String> handleGameNaoEncontrado(GameNaoEncontradoException e) {
+		return new ResponseEntity<>(e.getMessage(), HttpStatus.NOT_FOUND);
+	}
 }

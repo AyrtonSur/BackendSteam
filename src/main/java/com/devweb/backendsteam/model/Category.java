@@ -14,19 +14,19 @@ import lombok.ToString;
 @ToString
 @Entity
 public class Category {
-@Id
-@GeneratedValue(strategy = GenerationType.IDENTITY)
-private Long id;
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Long id;
 
-private String nome;
-private String slug;
+	private String nome;
+	private String slug;
 
-@JsonIgnore
-@OneToMany(mappedBy = "category")
-private List<Game> games;
+	@JsonIgnore
+	@OneToMany(mappedBy = "category")
+	private List<Game> games;
 
-public Category(String nome, String slug) {
-	this.nome = nome;
-	this.slug = slug;
-}
+	public Category(String nome, String slug) {
+		this.nome = nome;
+		this.slug = slug;
+	}
 }

@@ -18,53 +18,53 @@ import lombok.ToString;
 @ToString
 @Entity
 public class Game {
-@Id
-@GeneratedValue(strategy = GenerationType.IDENTITY)
-private Long id;
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Long id;
 
-private String image;
-private String titulo;
-private String desenvolvedora;
-private String publicadora;
+	private String image;
+	private String titulo;
+	private String desenvolvedora;
+	private String publicadora;
 
-private String plataforma;
-private LocalDate dataLancamento;
-private BigDecimal preco;
-private double avaliacao;
-private String descricao;
-private boolean multiplayer;
-private String classificacaoEtaria;
-private String idioma;
-@ManyToOne private Category category;
+	private String plataforma;
+	private LocalDate dataLancamento;
+	private BigDecimal preco;
+	private double avaliacao;
+	private String descricao;
+	private boolean multiplayer;
+	private String classificacaoEtaria;
+	private String idioma;
+	@ManyToOne private Category category;
 
-@ManyToMany
-@JoinTable(
-	name = "game_genre",
-	joinColumns = @JoinColumn(name = "game_id"),
-	inverseJoinColumns = @JoinColumn(name = "genre_id"))
-private Set<Genre> genres = new HashSet<>();
+	@ManyToMany
+	@JoinTable(
+		name = "game_genre",
+		joinColumns = @JoinColumn(name = "game_id"),
+		inverseJoinColumns = @JoinColumn(name = "genre_id"))
+	private Set<Genre> genres = new HashSet<>();
 
-@ManyToMany
-@JoinTable(
-	name = "game_platform",
-	joinColumns = @JoinColumn(name = "game_id"),
-	inverseJoinColumns = @JoinColumn(name = "platform_id"))
-private Set<Platform> platforms = new HashSet<>();
+	@ManyToMany
+	@JoinTable(
+		name = "game_platform",
+		joinColumns = @JoinColumn(name = "game_id"),
+		inverseJoinColumns = @JoinColumn(name = "platform_id"))
+	private Set<Platform> platforms = new HashSet<>();
 
-@ManyToMany
-@JoinTable(
-	name = "game_language",
-	joinColumns = @JoinColumn(name = "game_id"),
-	inverseJoinColumns = @JoinColumn(name = "language_id"))
-private Set<Language> languages = new HashSet<>();
+	@ManyToMany
+	@JoinTable(
+		name = "game_language",
+		joinColumns = @JoinColumn(name = "game_id"),
+		inverseJoinColumns = @JoinColumn(name = "language_id"))
+	private Set<Language> languages = new HashSet<>();
 
-@JsonIgnore
-@OneToMany(mappedBy = "user")
-private List<OwnedGame> gamesOwned;
+	@JsonIgnore
+	@OneToMany(mappedBy = "user")
+	private List<OwnedGame> gamesOwned;
 
-@JsonIgnore
-@OneToMany(mappedBy = "user")
-private List<Wishlist> wishlist;
+	@JsonIgnore
+	@OneToMany(mappedBy = "user")
+	private List<Wishlist> wishlist;
 
 	public Game(
 		String image,

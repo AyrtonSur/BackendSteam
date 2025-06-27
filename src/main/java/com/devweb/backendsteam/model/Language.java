@@ -15,19 +15,19 @@ import lombok.ToString;
 @ToString
 @Entity
 public class Language {
-@Id
-@GeneratedValue(strategy = GenerationType.IDENTITY)
-private Long id;
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Long id;
 
-private String nome;
-private String slug;
+	private String nome;
+	private String slug;
 
-@JsonIgnore
-@ManyToMany(mappedBy = "languages")
-private Set<Game> games = new HashSet<>();
+	@JsonIgnore
+	@ManyToMany(mappedBy = "languages")
+	private Set<Game> games = new HashSet<>();
 
-public Language(String nome, String slug) {
-	this.nome = nome;
-	this.slug = slug;
-}
+	public Language(String nome, String slug) {
+		this.nome = nome;
+		this.slug = slug;
+	}
 }
