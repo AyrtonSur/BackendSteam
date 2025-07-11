@@ -7,13 +7,13 @@ import lombok.Setter;
 @Getter
 @Setter
 public class AchievementDTO {
-    private String imagem;
-    private String descricao;
-    private boolean escondido;
+	private String imagem;
+	private String descricao;
+	private boolean escondido;
 
-    public AchievementDTO(Achievement achievement) {
-        this.imagem = achievement.getImagem();
-        this.descricao = achievement.getDescricao();
-        this.escondido = achievement.isEscondido();
-    }
+	public AchievementDTO(Achievement achievement) {
+		this.imagem = achievement.getImagem();
+		this.descricao = achievement.getDescricao();
+		this.escondido = achievement.isEscondido();
+	}
 }

@@ -73,7 +73,7 @@ public class User implements org.springframework.security.core.userdetails.UserD
 	}
 
 	public String getUserDisplayName() {
-    return this.username;
+	return this.username;
 	}
 
 	@Override

@@ -27,47 +27,47 @@ import java.util.Collections;
 @Configuration
 @EnableWebSecurity
 public class SecurityConfig {
-    @Autowired
-    private JwtAuthenticationFilter jwtAuthenticationFilter;
+	@Autowired
+	private JwtAuthenticationFilter jwtAuthenticationFilter;
 
-    @Bean
-    public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
-        http
-            .csrf(csrf -> csrf.disable())
-            .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
-            .authorizeHttpRequests(auth -> auth
-                .requestMatchers("/users/login", "/users", "/public/**").permitAll()
-                .anyRequest().authenticated()
-            )
-            .addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class);
-        return http.build();
-    }
+	@Bean
+	public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
+		http
+			.csrf(csrf -> csrf.disable())
+			.sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
+			.authorizeHttpRequests(auth -> auth
+				.requestMatchers("/users/login", "/users", "/public/**").permitAll()
+				.anyRequest().authenticated()
+			)
+			.addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class);
+		return http.build();
+	}
 }
 
 @Component
 class JwtAuthenticationFilter extends OncePerRequestFilter {
-    @Autowired
-    private UserRepository userRepository;
+	@Autowired
+	private UserRepository userRepository;
 
-    @Override
-    protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain)
-            throws ServletException, IOException {
-        String authHeader = request.getHeader("Authorization");
-        if (authHeader != null && authHeader.startsWith("Bearer ")) {
-            String token = authHeader.substring(7);
-            try {
-                Claims claims = JwtUtil.parseToken(token).getPayload();
-                String email = claims.getSubject();
-                UserDetails user = userRepository.findByEmail(email).orElse(null);
-                if (user != null) {
-                    UsernamePasswordAuthenticationToken authentication =
-                        new UsernamePasswordAuthenticationToken(user, null, Collections.emptyList());
-                    SecurityContextHolder.getContext().setAuthentication(authentication);
-                }
-            } catch (JwtException e) {
-                // Token inválido, não autentica
-            }
-        }
-        filterChain.doFilter(request, response);
-    }
+	@Override
+	protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain)
+			throws ServletException, IOException {
+		String authHeader = request.getHeader("Authorization");
+		if (authHeader != null && authHeader.startsWith("Bearer ")) {
+			String token = authHeader.substring(7);
+			try {
+				Claims claims = JwtUtil.parseToken(token).getPayload();
+				String email = claims.getSubject();
+				UserDetails user = userRepository.findByEmail(email).orElse(null);
+				if (user != null) {
+					UsernamePasswordAuthenticationToken authentication =
+						new UsernamePasswordAuthenticationToken(user, null, Collections.emptyList());
+					SecurityContextHolder.getContext().setAuthentication(authentication);
+				}
+			} catch (JwtException e) {
+				// Token inválido, não autentica
+			}
+		}
+		filterChain.doFilter(request, response);
+	}
 }
