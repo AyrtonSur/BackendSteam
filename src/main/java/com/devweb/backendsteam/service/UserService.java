@@ -56,4 +56,12 @@ public class UserService {
 	public Optional<User> buscarPorUserId(String userId) {
 		return userRepository.findByUserId(userId);
 	}
+
+	public Optional<User> buscarPorEmail(String email) {
+		return userRepository.findByEmail(email);
+	}
+
+	public boolean checkPassword(String rawPassword, String encodedPassword) {
+		return encoder.matches(rawPassword, encodedPassword);
+	}
 }
