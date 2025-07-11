@@ -61,7 +61,7 @@ public class Game {
 		inverseJoinColumns = @JoinColumn(name = "platform_id"))
 	private Set<Platform> platforms = new HashSet<>();
 
-	@ManyToMany(cascade = CascadeType.ALL)
+	@ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REMOVE})
 	@JoinTable(
 		name = "game_language",
 		joinColumns = @JoinColumn(name = "game_id"),
