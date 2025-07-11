@@ -1,21 +1,22 @@
 version: '3.8'
 
 services:
-  mysql:
-    image: mysql:8.0
-    container_name: mysql_backendsteam
+  postgres:
+    image: bitnami/postgresql:16
+    container_name: postgres_backendsteam
     environment:
-      MYSQL_ROOT_PASSWORD: password
-      MYSQL_DATABASE: desweb-09-11
+      - POSTGRESQL_DATABASE=desweb_09_11
+      - POSTGRESQL_USERNAME=root
+      - POSTGRESQL_PASSWORD=password
     ports:
-      - "3306:3306"
+      - "5432:5432"
     volumes:
-      - mysql_data:/var/lib/mysql
+      - postgres_data:/bitnami/postgresql
     healthcheck:
-      test: ["CMD", "mysqladmin", "ping", "-ppassword"]
+      test: ["CMD", "/opt/bitnami/scripts/postgresql/healthcheck.sh"]
       interval: 10s
       timeout: 5s
       retries: 5
 
 volumes:
-  mysql_data:
+  postgres_data:

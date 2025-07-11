@@ -58,9 +58,9 @@ public class BackendSteamApplication implements CommandLineRunner {
 		hollowKnight.setCover("/hollow-knight-image.jpg");
 		hollowKnight.setDesconto(0);
 		hollowKnight.setDesenvolvedora("Team Cherry");
-		hollowKnight.setClassificacao(java.util.List.of("Livre", "Violência"));
-		hollowKnight.setIdiomas(Set.of(ingles, portugues, espanhol, alemao, frances, italiano, japones, coreano, chines));
-		hollowKnight.setCompatibilidade(java.util.List.of(
+		hollowKnight.setClassificacao(new java.util.ArrayList<>(java.util.List.of("Livre", "Violência")));
+		hollowKnight.setIdiomas(new java.util.HashSet<>(java.util.Arrays.asList(ingles, portugues, espanhol, alemao, frances, italiano, japones, coreano, chines)));
+		hollowKnight.setCompatibilidade(new java.util.ArrayList<>(java.util.List.of(
 			"Um jogador",
 			"Nuvem Steam",
 			"Cartas Colecionáveis Steam",
@@ -68,17 +68,17 @@ public class BackendSteamApplication implements CommandLineRunner {
 			"Remote play",
 			"Compatibilidade em família",
 			"Controle de Xbox"
-		));
+		)));
 		hollowKnight.setDataLancamento(java.time.LocalDate.of(2017, 2, 24));
-		hollowKnight.setCategories(Set.of(metroidvania, soulslike, plataforma, doisD));
+		hollowKnight.setCategories(new java.util.HashSet<>(java.util.Arrays.asList(metroidvania, soulslike, plataforma, doisD)));
 		hollowKnight.setAbout("Forje seu caminho em Hollow Knight! Uma aventura de ação épica em um vasto reino arruinado de insetos e heróis. Explore cavernas serpenteantes, lute contra criaturas malignas e alie-se a insetos bizarros num estilo clássico 2D desenhado à mão.");
-		hollowKnight.setScenes(java.util.List.of(
+		hollowKnight.setScenes(new java.util.ArrayList<>(java.util.List.of(
 			"/hollow-knight-scene-1.jpg",
 			"/hollow-knight-scene-2.jpg",
 			"/hollow-knight-scene-3.webp",
 			"/hollow-knight-scene-4.jpg"
-		));
-		hollowKnight.setExemplo(java.util.List.of(
+		)));
+		hollowKnight.setExemplo(new java.util.ArrayList<>(java.util.List.of(
 			"https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/367520/ss_5384f9f8b96a0b9934b2bc35a4058376211636d2.116x65.jpg?t=1695270428",
 			"https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/367520/ss_d5b6edd94e77ba6db31c44d8a3c09d807ab27751.116x65.jpg?t=1695270428",
 			"https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/367520/ss_a81e4231cc8d55f58b51a4a938898af46503cae5.116x65.jpg?t=1695270428",
@@ -88,7 +88,7 @@ public class BackendSteamApplication implements CommandLineRunner {
 			"https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/367520/ss_47f3523dbea462aff2ca4bc9f605faaf80a792b2.116x65.jpg?t=1695270428",
 			"https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/367520/ss_92c7e8f34c00bdb455070ecdd5b746f0d2f6d808.116x65.jpg?t=1695270428",
 			"https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/367520/ss_5384f9f8b96a0b9934b2bc35a4058376211636d2.116x65.jpg?t=1695270428"
-		));
+		)));
 		gameRepository.save(hollowKnight);
 		for (int i = 1; i <= 11; i++) {
 			achievementRepository.save(new Achievement("/conquista" + i + "H.jpg", "Descricao generia", false, hollowKnight));
@@ -101,26 +101,26 @@ public class BackendSteamApplication implements CommandLineRunner {
 		marvelRivals.setCover("/MarvelRivals.jpg");
 		marvelRivals.setDesconto(0);
 		marvelRivals.setDesenvolvedora("Team Cherry");
-		marvelRivals.setClassificacao(java.util.List.of("10 anos", "Violência"));
-		marvelRivals.setIdiomas(Set.of(ingles, portugues, espanhol, alemao, frances, italiano, japones, coreano, chines, russo, polones, turco, arabe, hindi));
-		marvelRivals.setCompatibilidade(java.util.List.of(
+		marvelRivals.setClassificacao(new java.util.ArrayList<>(java.util.List.of("10 anos", "Violência")));
+		marvelRivals.setIdiomas(new java.util.HashSet<>(java.util.Arrays.asList(ingles, portugues, espanhol, alemao, frances, italiano, japones, coreano, chines, russo, polones, turco, arabe, hindi)));
+		marvelRivals.setCompatibilidade(new java.util.ArrayList<>(java.util.List.of(
 			"JXJ on-line",
 			"Cooperativo on-line",
 			"Multijogador multiplataforma",
 			"Conquistas Steam",
 			"Compras em aplicativo",
 			"Controle de Xbox"
-		));
+		)));
 		marvelRivals.setDataLancamento(java.time.LocalDate.of(2017, 2, 24));
-		marvelRivals.setCategories(Set.of(metroidvania, soulslike, plataforma, doisD));
+		marvelRivals.setCategories(new java.util.HashSet<>(java.util.Arrays.asList(metroidvania, soulslike, plataforma, doisD)));
 		marvelRivals.setAbout("Forje seu caminho em Hollow Knight! Uma aventura de ação épica em um vasto reino arruinado de insetos e heróis. Explore cavernas serpenteantes, lute contra criaturas malignas e alie-se a insetos bizarros num estilo clássico 2D desenhado à mão.");
-		marvelRivals.setScenes(java.util.List.of(
+		marvelRivals.setScenes(new java.util.ArrayList<>(java.util.List.of(
 			"/imagem_maior.jpg",
 			"/imagem_maior2.jpg",
 			"/MarvelRivals_Scene-1.jpg",
 			"/MarvelRivals_Scene.jpg"
-		));
-		marvelRivals.setExemplo(java.util.List.of(
+		)));
+		marvelRivals.setExemplo(new java.util.ArrayList<>(java.util.List.of(
 			"https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/2767030/90d61838fa6270a5a5e52ce4da63866de1f15067/ss_90d61838fa6270a5a5e52ce4da63866de1f15067.116x65.jpg?t=1744365532",
 			"https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/2767030/9e810af14b1c53fbeb0802fdee46ade039677318/ss_9e810af14b1c53fbeb0802fdee46ade039677318.116x65.jpg?t=1744365532",
 			"https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/2767030/bc26795fdb621e7d7cf1c5d7edc8a48e266df8cc/ss_bc26795fdb621e7d7cf1c5d7edc8a48e266df8cc.116x65.jpg?t=1744365532",
@@ -131,7 +131,7 @@ public class BackendSteamApplication implements CommandLineRunner {
 			"https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/2767030/ss_51dfe5152a8dcaf375a71d0d07433af334bf7a84.116x65.jpg?t=1744365532",
 			"https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/2767030/ss_719f339a932cb46a9e3e780f27b588ad2e3c4885.116x65.jpg?t=1744365532",
 			"https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/2767030/90d61838fa6270a5a5e52ce4da63866de1f15067/ss_90d61838fa6270a5a5e52ce4da63866de1f15067.116x65.jpg?t=1744365532"
-		));
+		)));
 		gameRepository.save(marvelRivals);
 		for (int i = 1; i <= 8; i++) {
 			achievementRepository.save(new Achievement("/conquista" + i + "H.jpg", "Descricao generia", false, marvelRivals));
@@ -144,9 +144,9 @@ public class BackendSteamApplication implements CommandLineRunner {
 		terraria.setCover("/Terraria.avif");
 		terraria.setDesconto(0);
 		terraria.setDesenvolvedora("Team Cherry");
-		terraria.setClassificacao(java.util.List.of("10 anos", "Violência", "Violência"));
-		terraria.setIdiomas(Set.of(ingles, portugues, espanhol, alemao, frances, italiano, japones, coreano, chines, russo, polones, turco));
-		terraria.setCompatibilidade(java.util.List.of(
+		terraria.setClassificacao(new java.util.ArrayList<>(java.util.List.of("10 anos", "Violência", "Violência")));
+		terraria.setIdiomas(new java.util.HashSet<>(java.util.Arrays.asList(ingles, portugues, espanhol, alemao, frances, italiano, japones, coreano, chines, russo, polones, turco)));
+		terraria.setCompatibilidade(new java.util.ArrayList<>(java.util.List.of(
 			"Um jogador",
 			"Nuvem Steam",
 			"Cartas Colecionáveis Steam",
@@ -154,17 +154,17 @@ public class BackendSteamApplication implements CommandLineRunner {
 			"Remote play",
 			"Compatibilidade em família",
 			"Controle de Xbox"
-		));
+		)));
 		terraria.setDataLancamento(java.time.LocalDate.of(2017, 2, 24));
-		terraria.setCategories(Set.of(metroidvania, soulslike, plataforma, doisD));
+		terraria.setCategories(new java.util.HashSet<>(java.util.Arrays.asList(metroidvania, soulslike, plataforma, doisD)));
 		terraria.setAbout("Forje seu caminho em Hollow Knight! Uma aventura de ação épica em um vasto reino arruinado de insetos e heróis. Explore cavernas serpenteantes, lute contra criaturas malignas e alie-se a insetos bizarros num estilo clássico 2D desenhado à mão.");
-		terraria.setScenes(java.util.List.of(
+		terraria.setScenes(new java.util.ArrayList<>(java.util.List.of(
 			"/terraria-scene.webp",
 			"/terraria-scene-1.png",
 			"/terraria-scene-2.webp",
 			"/terraria-scene-3.gif"
-		));
-		terraria.setExemplo(java.util.List.of(
+		)));
+		terraria.setExemplo(new java.util.ArrayList<>(java.util.List.of(
 			"https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/105600/ss_8c03886f214d2108cafca13845533eaa3d87d83f.116x65.jpg?t=1731252354",
 			"https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/105600/ss_ae168a00ab08104ba266dc30232654d4b3c919e5.116x65.jpg?t=1731252354",
 			"https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/105600/ss_9edd98caaf9357c2f40758f354475a56e356e8b0.116x65.jpg?t=1731252354",
@@ -175,7 +175,7 @@ public class BackendSteamApplication implements CommandLineRunner {
 			"https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/105600/ss_830aa37570410b80947636785ff62096c0bf276f.116x65.jpg?t=1731252354",
 			"https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/105600/ss_0d805c81ef85dfd2a7a8b25da96f8066017fb3b3.116x65.jpg?t=1731252354",
 			"https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/105600/ss_8c03886f214d2108cafca13845533eaa3d87d83f.116x65.jpg?t=1731252354"
-		));
+		)));
 		gameRepository.save(terraria);
 		for (int i = 1; i <= 8; i++) {
 			achievementRepository.save(new Achievement("/conquista" + i + "H.jpg", "Descricao generia", false, terraria));
@@ -188,9 +188,9 @@ public class BackendSteamApplication implements CommandLineRunner {
 		skyrim.setCover("/Skyrim.jpg");
 		skyrim.setDesconto(20);
 		skyrim.setDesenvolvedora("Team Cherry");
-		skyrim.setClassificacao(java.util.List.of("10 anos", "Violência"));
-		skyrim.setIdiomas(Set.of(ingles, portugues, espanhol, alemao, frances, italiano, japones, coreano, chines, russo, polones));
-		skyrim.setCompatibilidade(java.util.List.of(
+		skyrim.setClassificacao(new java.util.ArrayList<>(java.util.List.of("10 anos", "Violência")));
+		skyrim.setIdiomas(new java.util.HashSet<>(java.util.Arrays.asList(ingles, portugues, espanhol, alemao, frances, italiano, japones, coreano, chines, russo, polones)));
+		skyrim.setCompatibilidade(new java.util.ArrayList<>(java.util.List.of(
 			"Um jogador",
 			"Nuvem Steam",
 			"Cartas Colecionáveis Steam",
@@ -198,17 +198,17 @@ public class BackendSteamApplication implements CommandLineRunner {
 			"Remote play",
 			"Compatibilidade em família",
 			"Controle de Xbox"
-		));
+		)));
 		skyrim.setDataLancamento(java.time.LocalDate.of(2017, 2, 24));
-		skyrim.setCategories(Set.of(metroidvania, soulslike, plataforma, doisD));
+		skyrim.setCategories(new java.util.HashSet<>(java.util.Arrays.asList(metroidvania, soulslike, plataforma, doisD)));
 		skyrim.setAbout("Forje seu caminho em Hollow Knight! Uma aventura de ação épica em um vasto reino arruinado de insetos e heróis. Explore cavernas serpenteantes, lute contra criaturas malignas e alie-se a insetos bizarros num estilo clássico 2D desenhado à mão.");
-		skyrim.setScenes(java.util.List.of(
+		skyrim.setScenes(new java.util.ArrayList<>(java.util.List.of(
 			"/skyrim-scene-1.jpg",
 			"/skyrim-scene-2.webp",
 			"/skyrim-scene-3.jpg",
 			"/skyrim-scene-4.jpg"
-		));
-		skyrim.setExemplo(java.util.List.of(
+		)));
+		skyrim.setExemplo(new java.util.ArrayList<>(java.util.List.of(
 			"https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/489830/ss_73c1a0bb7e1720c8a1847186c3ddd837d3ca7a8d.116x65.jpg?t=1721923149",
 			"https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/489830/ss_d64b646612ab1402bdda8e400672aa0dbcb352ea.116x65.jpg?t=1721923149",
 			"https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/489830/ss_b6bb6f79278505b3f48567f08c21f7a0eb171c68.116x65.jpg?t=1721923149",
@@ -218,7 +218,7 @@ public class BackendSteamApplication implements CommandLineRunner {
 			"https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/489830/ss_2ca72f4ecc42a18dd4bf056c539a9794c2b2493d.116x65.jpg?t=1721923149",
 			"https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/489830/ss_5d19c69d33abca6f6271d75f371d4241c0d6b2d1.116x65.jpg?t=1721923149",
 			"https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/489830/ss_73c1a0bb7e1720c8a1847186c3ddd837d3ca7a8d.116x65.jpg?t=1721923149"
-		));
+		)));
 		gameRepository.save(skyrim);
 		for (int i = 1; i <= 7; i++) {
 			achievementRepository.save(new Achievement("/conquista" + i + "H.jpg", "Descricao generia", false, skyrim));

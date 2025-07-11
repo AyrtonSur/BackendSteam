@@ -16,6 +16,7 @@ import org.hibernate.annotations.UpdateTimestamp;
 @NoArgsConstructor
 @ToString
 @Entity
+@Table(name = "\"user\"")
 public class User {
 	@JsonIgnore
 	@Id
