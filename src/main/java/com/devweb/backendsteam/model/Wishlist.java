@@ -18,7 +18,7 @@ public class Wishlist {
 
 	@ManyToOne
 	@MapsId("userId")
-	@JoinColumn(name = "user_id")
+	@JoinColumn(name = "user_id", referencedColumnName = "user_id")
 	private User user;
 
 	@ManyToOne
@@ -34,6 +34,6 @@ public class Wishlist {
 		this.game = game;
 		this.listedAt = listedAt;
 		this.priority = priority;
-		this.id = new WishlistId(user.getId(), game.getId());
+		this.id = new WishlistId(user.getUserId(), game.getId());
 	}
 }

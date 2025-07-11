@@ -1,8 +1,7 @@
 package com.devweb.backendsteam.model;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
-import java.util.List;
+import java.util.Set;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -20,13 +19,28 @@ public class Category {
 
 	private String nome;
 	private String slug;
+	private String image;
+	private String title;
 
-	@JsonIgnore
-	@OneToMany(mappedBy = "category")
-	private List<Game> games;
+	@ManyToMany(mappedBy = "categories")
+	private Set<Game> games = new java.util.HashSet<>();
 
-	public Category(String nome, String slug) {
+	public Category(String nome, String slug, String image, String title) {
 		this.nome = nome;
 		this.slug = slug;
+		this.image = image;
+		this.title = title;
+	}
+
+	public String getName() {
+		return this.nome;
+	}
+
+	public Set<Game> getGames() {
+		return games;
+	}
+
+	public void setGames(Set<Game> games) {
+		this.games = games;
 	}
 }

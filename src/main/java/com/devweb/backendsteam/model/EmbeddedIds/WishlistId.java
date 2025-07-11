@@ -14,10 +14,10 @@ import lombok.ToString;
 @ToString
 @Embeddable
 public class WishlistId implements Serializable {
-	private Long userId;
+	private String userId;
 	private Long gameId;
 
-	public WishlistId(Long userId, Long gameId) {
+	public WishlistId(String userId, Long gameId) {
 		this.userId = userId;
 		this.gameId = gameId;
 	}
@@ -30,8 +30,8 @@ public class WishlistId implements Serializable {
 	@Override
 	public boolean equals(Object o) {
 		if (this == o) return true;
-		if (!(o instanceof OwnedGameId)) return false;
-		OwnedGameId that = (OwnedGameId) o;
-		return Objects.equals(userId, that.getUserId()) && Objects.equals(gameId, that.getUserId());
+		if (!(o instanceof WishlistId)) return false;
+		WishlistId that = (WishlistId) o;
+		return Objects.equals(userId, that.getUserId()) && Objects.equals(gameId, that.getGameId());
 	}
 }

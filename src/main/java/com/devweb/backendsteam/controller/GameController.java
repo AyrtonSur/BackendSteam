@@ -1,5 +1,6 @@
 package com.devweb.backendsteam.controller;
 
+import com.devweb.backendsteam.dto.GameDTO;
 import com.devweb.backendsteam.model.Game;
 import com.devweb.backendsteam.model.ResultadoPaginado;
 import com.devweb.backendsteam.service.GameService;
@@ -18,21 +19,21 @@ public class GameController {
 	@Autowired private GameService gameService;
 
 	@GetMapping // Requisição do tipo GET para http://localhost:8080/games
-	public List<Game> recuperarGames() {
-		return gameService.recuperarGames();
+	public List<GameDTO> recuperarGames() {
+		return gameService.recuperarGames().stream().map(GameDTO::new).toList();
 	}
 
 	// Requisição do tipo GET para http://localhost:8080/games/1
 	@GetMapping("{idGame}")
-	public Game recuperarGamePorId(@PathVariable("idGame") long id) {
-		return gameService.recuperarGamePorId(id);
+	public GameDTO recuperarGamePorId(@PathVariable("idGame") long id) {
+		return new GameDTO(gameService.recuperarGamePorId(id));
 	}
 
 	// Requisição do tipo GET para http://localhost:8080/games/category/aventura
 	@GetMapping("category/{slugCategory}")
-	public List<Game> recuperarGamesPorSlugCategory(
+	public List<GameDTO> recuperarGamesPorSlugCategory(
 		@PathVariable("slugCategory") String slugCategory) {
-		return gameService.recuperarGamesPorSlugCategory(slugCategory);
+		return gameService.recuperarGamesPorSlugCategory(slugCategory).stream().map(GameDTO::new).toList();
 	}
 
 	@PostMapping
@@ -62,15 +63,15 @@ public class GameController {
 	// Requisição do tipo GET para
 	// http://localhost:8080/games/paginacao?pagina=0&tamanho=5&nome=ce
 	@GetMapping("paginacao")
-	public ResultadoPaginado<Game> recuperarGamesComPaginacao(
+	public ResultadoPaginado<GameDTO> recuperarGamesComPaginacao(
 		@RequestParam(value = "pagina", defaultValue = "0") int pagina,
 		@RequestParam(value = "tamanho", defaultValue = "5") int tamanho,
 		@RequestParam(value = "nome", defaultValue = "") String nome) {
 		Pageable pageable = PageRequest.of(pagina, tamanho);
 		Page<Game> page = gameService.recuperarGamesComPaginacao(pageable, nome);
-		ResultadoPaginado<Game> resultadoPaginado =
+		ResultadoPaginado<GameDTO> resultadoPaginado =
 			new ResultadoPaginado<>(
-				page.getTotalElements(), page.getTotalPages(), page.getNumber(), page.getContent());
+				page.getTotalElements(), page.getTotalPages(), page.getNumber(), page.getContent().stream().map(GameDTO::new).toList());
 		return resultadoPaginado;
 	}
 }

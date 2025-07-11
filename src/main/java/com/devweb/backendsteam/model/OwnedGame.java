@@ -19,7 +19,7 @@ public class OwnedGame {
 
 	@ManyToOne
 	@MapsId("userId")
-	@JoinColumn(name = "user_id")
+	@JoinColumn(name = "user_id", referencedColumnName = "user_id")
 	private User user;
 
 	@ManyToOne
@@ -35,6 +35,6 @@ public class OwnedGame {
 		this.game = game;
 		this.boughtAt = boughtAt;
 		this.price = price;
-		this.id = new OwnedGameId(user.getId(), game.getId());
+		this.id = new OwnedGameId(user.getUserId(), game.getId());
 	}
 }

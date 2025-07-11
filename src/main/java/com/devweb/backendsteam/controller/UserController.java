@@ -20,13 +20,14 @@ public class UserController {
 		return userService.listarTodos();
 	}
 
-	@GetMapping("{id}")
-	public Optional<User> buscarPorId(@PathVariable Long id) {
-		return userService.buscarPorId(id);
+	@GetMapping("{userId}")
+	public Optional<User> buscarPorUserId(@PathVariable String userId) {
+		return userService.buscarPorUserId(userId);
 	}
 
 	@PostMapping
 	public User adicionar(@RequestBody User user) {
+		// user_id sempre será gerado no service
 		return userService.adicionar(user);
 	}
 
@@ -35,8 +36,8 @@ public class UserController {
 		return userService.alterar(user);
 	}
 
-	@DeleteMapping("{id}")
-	public void remover(@PathVariable Long id) {
-		userService.remover(id);
+	@DeleteMapping("{userId}")
+	public void remover(@PathVariable String userId) {
+		userService.buscarPorUserId(userId).ifPresent(u -> userService.remover(u.getId()));
 	}
 }

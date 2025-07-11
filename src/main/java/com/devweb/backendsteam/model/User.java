@@ -17,17 +17,19 @@ import org.hibernate.annotations.UpdateTimestamp;
 @ToString
 @Entity
 public class User {
+	@JsonIgnore
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 
-	@Column(unique = true)
-	@GeneratedValue(strategy = GenerationType.UUID)
-	private String user_id;
+	@Column(name = "user_id", unique = true)
+	private String userId;
+
+	@Column(unique = true, nullable = false)
+	private String email;
 
 	private String name;
 	private String username;
-	private String email;
 	private String password; // Password Hash
 	private Integer age;
 	private String genre;

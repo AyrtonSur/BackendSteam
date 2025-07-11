@@ -21,8 +21,8 @@ public class WishlistService {
 		return wishlistRepository.findById(id).orElse(null);
 	}
 
-	public List<Wishlist> listarPorUsuario(Long userId) {
-		return wishlistRepository.findByUserId(userId);
+	public List<Wishlist> listarPorUsuario(String userId) {
+		return wishlistRepository.findByUser_UserId(userId);
 	}
 
 	public Wishlist adicionar(Wishlist wishlist) {

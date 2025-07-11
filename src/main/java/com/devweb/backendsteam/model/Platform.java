@@ -21,13 +21,15 @@ public class Platform {
 
 	private String nome;
 	private String slug;
+	private String nomePlataforma;
 
 	@JsonIgnore
 	@ManyToMany(mappedBy = "platforms")
 	private Set<Game> games = new HashSet<>();
 
-	public Platform(String nome, String slug) {
+	public Platform(String nome, String slug, String nomePlataforma) {
 		this.nome = nome;
 		this.slug = slug;
+		this.nomePlataforma = nomePlataforma;
 	}
 }

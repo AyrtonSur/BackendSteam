@@ -4,7 +4,9 @@ import com.devweb.backendsteam.model.User;
 import com.devweb.backendsteam.repository.UserRepository;
 import java.util.List;
 import java.util.Optional;
+import java.util.UUID;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -12,6 +14,8 @@ public class UserService {
 
 	@Autowired
 	private UserRepository userRepository;
+
+	private final BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
 
 	public List<User> listarTodos() {
 		return userRepository.findAll();
@@ -22,6 +26,22 @@ public class UserService {
 	}
 
 	public User adicionar(User user) {
+		if (user.getUserId() == null || user.getUserId().isEmpty()) {
+			user.setUserId(UUID.randomUUID().toString());
+		}
+		user.setPassword(encoder.encode(user.getPassword()));
+		return userRepository.save(user);
+	}
+
+	public User adicionarUsuarioBase() {
+		User user = new User();
+		user.setName("Admin");
+		user.setUsername("admin");
+		user.setEmail("admin@backendsteam.com");
+		user.setPassword(encoder.encode("admin123"));
+		user.setAge(30);
+		user.setGenre("admin");
+		user.setRole("ADMIN");
 		return userRepository.save(user);
 	}
 
@@ -31,5 +51,9 @@ public class UserService {
 
 	public void remover(Long id) {
 		userRepository.deleteById(id);
+	}
+
+	public Optional<User> buscarPorUserId(String userId) {
+		return userRepository.findByUserId(userId);
 	}
 }

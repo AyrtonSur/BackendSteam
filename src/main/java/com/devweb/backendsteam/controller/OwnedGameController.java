@@ -21,13 +21,13 @@ public class OwnedGameController {
 	}
 	
 	@GetMapping("/user/{userId}/game/{gameId}")
-	public OwnedGame buscarPorId(@PathVariable Long userId, @PathVariable Long gameId) {
-	OwnedGameId id = new OwnedGameId(userId, gameId);
-	return ownedGameService.buscarPorId(id);
+	public OwnedGame buscarPorId(@PathVariable String userId, @PathVariable Long gameId) {
+		OwnedGameId id = new OwnedGameId(userId, gameId);
+		return ownedGameService.buscarPorId(id);
 	}
 
 	@GetMapping("/user/{userId}")
-	public List<OwnedGame> listarPorUsuario(@PathVariable Long userId) {
+	public List<OwnedGame> listarPorUsuario(@PathVariable String userId) {
 		return ownedGameService.listarPorUsuario(userId);
 	}
 
@@ -37,8 +37,8 @@ public class OwnedGameController {
 	}
 
 	@DeleteMapping("/user/{userId}/game/{gameId}")
-	public void remover(@PathVariable Long userId, @PathVariable Long gameId) {
-	OwnedGameId id = new OwnedGameId(userId, gameId);
-	ownedGameService.remover(id);
+	public void remover(@PathVariable String userId, @PathVariable Long gameId) {
+		OwnedGameId id = new OwnedGameId(userId, gameId);
+		ownedGameService.remover(id);
 	}
 }

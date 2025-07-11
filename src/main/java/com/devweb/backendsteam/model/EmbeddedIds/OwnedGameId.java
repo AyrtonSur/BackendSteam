@@ -14,10 +14,10 @@ import lombok.ToString;
 @ToString
 @Embeddable
 public class OwnedGameId implements Serializable {
-	private Long userId;
+	private String userId;
 	private Long gameId;
 
-	public OwnedGameId(Long userId, Long gameId) {
+	public OwnedGameId(String userId, Long gameId) {
 		this.userId = userId;
 		this.gameId = gameId;
 	}

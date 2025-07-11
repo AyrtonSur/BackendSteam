@@ -21,13 +21,21 @@ public class Language {
 
 	private String nome;
 	private String slug;
+	private String lingua;
+	private boolean interfaceIdioma;
+	private boolean dublagem;
+	private boolean legenda;
 
 	@JsonIgnore
 	@ManyToMany(mappedBy = "languages")
 	private Set<Game> games = new HashSet<>();
 
-	public Language(String nome, String slug) {
+	public Language(String nome, String slug, String lingua, boolean interfaceIdioma, boolean dublagem, boolean legenda) {
 		this.nome = nome;
 		this.slug = slug;
+		this.lingua = lingua;
+		this.interfaceIdioma = interfaceIdioma;
+		this.dublagem = dublagem;
+		this.legenda = legenda;
 	}
 }

@@ -21,8 +21,8 @@ public class OwnedGameService {
 	return ownedGameRepository.findById(id).orElse(null);
 	}
 
-	public List<OwnedGame> listarPorUsuario(Long userId) {
-	return ownedGameRepository.findByUserId(userId);
+	public List<OwnedGame> listarPorUsuario(String userId) {
+		return ownedGameRepository.findByUser_UserId(userId);
 	}
 
 	public OwnedGame adicionar(OwnedGame ownedGame) {

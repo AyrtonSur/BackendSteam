@@ -21,13 +21,13 @@ public class WishlistController {
 	}
 
 	@GetMapping("/user/{userId}/game/{gameId}")
-	public Wishlist buscarPorId(@PathVariable Long userId, @PathVariable Long gameId) {
+	public Wishlist buscarPorId(@PathVariable String userId, @PathVariable Long gameId) {
 		WishlistId id = new WishlistId(userId, gameId);
 		return wishlistService.buscarPorId(id);
 	}
 
 	@GetMapping("/user/{userId}")
-	public List<Wishlist> listarPorUsuario(@PathVariable Long userId) {
+	public List<Wishlist> listarPorUsuario(@PathVariable String userId) {
 		return wishlistService.listarPorUsuario(userId);
 	}
 
@@ -37,7 +37,7 @@ public class WishlistController {
 	}
 
 	@DeleteMapping("/user/{userId}/game/{gameId}")
-	public void remover(@PathVariable Long userId, @PathVariable Long gameId) {
+	public void remover(@PathVariable String userId, @PathVariable Long gameId) {
 		WishlistId id = new WishlistId(userId, gameId);
 		wishlistService.remover(id);
 	}
