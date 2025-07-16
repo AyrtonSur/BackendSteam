@@ -43,7 +43,7 @@ public class UserController {
         return userService.buscarPorUserId(userId);
     }
 
-    @PostMapping
+    @PostMapping("/cadastro")
     public User adicionar(@RequestBody User user) {
         return userService.adicionar(user);
     }
@@ -53,7 +53,7 @@ public class UserController {
         return userService.alterar(user);
     }
 
-    @PatchMapping("/add-game")
+    @PatchMapping("/addGame")
     public ResponseEntity<?> adicionarOwnedGame(@RequestBody OwnedGameRequestDTO dto) {
         try {
             userService.adicionarOwnedGame(dto);
