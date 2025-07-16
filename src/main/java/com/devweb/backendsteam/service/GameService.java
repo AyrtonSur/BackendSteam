@@ -45,13 +45,8 @@ public class GameService {
 				() -> new GameNaoEncontradoException("Game número " + id + " não encontrado."));
 	}
 
-	public Page<Game> recuperarGamesComPaginacao(Pageable pageable, String nome, String slugCategory) {
-		String filtro = (nome == null || nome.isBlank()) ? "%" : "%" + nome + "%";
-		if (slugCategory == null || slugCategory.isBlank()) {
-			return gameRepository.recuperarGamesComPaginacao(pageable, filtro);
-		} else {
-			return gameRepository.recuperarGamesComPaginacaoPorCategoria(pageable, filtro, slugCategory);
-		}
+	public Page<Game> recuperarGamesComPaginacao(Pageable pageable, String nome) {
+		return gameRepository.recuperarGamesComPaginacao(pageable, "%" + nome + "%");
 	}
 
 	public List<Game> recuperarGamesPorSlugCategory(String slugCategory) {
